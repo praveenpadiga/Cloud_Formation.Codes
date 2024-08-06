@@ -1,0 +1,15 @@
+Resources:
+   myInstance:
+     Type: 'AWS::EC2::Instance'
+     Properties: 
+        ImageId: ami-0497a974f8d5dcef8
+        InstanceType: t2.micro
+        KeyName: singapure
+        SecurityGroupIds:
+          - sg-09a595c7aee80696d
+        UserData:
+          Fn::Base64: !Sub |
+             #!/bin/bash
+             apt-get update -y
+             service httpd start
+             chkconfig httpd on
